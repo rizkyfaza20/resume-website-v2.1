@@ -1,101 +1,201 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import profilePic from "./assets/profile.jpg"
+import { Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Sidebar } from "@/components/sidebar"
+
+export default function FullscreenDevOpsResume() {
+  const [activeSection, setActiveSection] = useState("about")
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+  const sections = [
+    { id: "about", title: "About", icon: "User" },
+    { id: "skillset", title: "Skillset", icon: "Code" },
+    { id: "experiences", title: "Experiences", icon: "Briefcase" },
+    { id: "contributions", title: "Contributions", icon: "Globe" },
+    { id: "certifications", title: "Certifications", icon: "Award" },
+  ]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentPosition = window.scrollY
+      const windowHeight = window.innerHeight
+      const currentSection = sections.find((section) => {
+        const el = document.getElementById(section.id)
+        if (el) {
+          const top = el.offsetTop
+          const bottom = top + el.offsetHeight
+          return currentPosition >= top - windowHeight / 2 && currentPosition < bottom - windowHeight / 2
+        }
+        return false
+      })
+      if (currentSection) {
+        setActiveSection(currentSection.id)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [sections])
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+      setActiveSection(sectionId)
+      setIsSidebarOpen(false)
+    }
+  }
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen)
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="bg-gray-900 text-white font-sans">
+      <nav className="fixed top-0 left-0 right-0 bg-gray-800 z-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-between items-center py-4">
+            <h1 className="text-xl font-bold">Rizky Faza - DevOps Engineer</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <Button variant="ghost" size="icon" className="text-white hover:bg-gray-700 z-30" onClick={toggleSidebar}>
+              {isSidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <span className="sr-only">{isSidebarOpen ? "Close menu" : "Open menu"}</span>
+            </Button>
+          </div>
         </div>
+      </nav>
+
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        sections={sections}
+        activeSection={activeSection}
+        onSectionClick={scrollToSection}
+      />
+
+      <main className="pt-16">
+        <section id="about" className="min-h-screen flex items-center justify-center p-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <Image
+              src={profilePic}
+              alt="Rizky Faza"
+              width={256}
+              height={256}
+              className="rounded-full mx-auto mb-8 object-cover"
+              priority
+            />
+            <h2 className="text-4xl font-bold mb-4">Rizky Faza</h2>
+            <p className="text-xl mb-8">
+              Experienced DevOps Engineer and Site Reliability Engineer passionate about automating processes and improving system reliability.
+              Skilled in cloud technologies, CI/CD pipelines, and infrastructure as code. Committed to fostering
+              collaboration between development and operations teams.
+            </p>
+            <div className="flex justify-center space-x-4">
+              <a href="#" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                Download CV
+              </a>
+              <a href="/contact" className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                Contact Me
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="skillset" className="min-h-screen flex items-center justify-center p-4 bg-gray-800">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Skillset</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+              {[
+                "AWS / Azure / GCP",
+                "Docker / Kubernetes",
+                "Terraform / Pulumi",
+                "Ansible / Azure Bicep",
+                "EKS / GKE / RKE",
+                "Azure DevOps / Github Actions",
+                "Powershell / Bash scripting",
+                "Prometheus / Grafana",
+                "ELK Stack",
+                "Git",
+                "Agile / Scrum",
+              ].map((skill) => (
+                <div key={skill} className="bg-gray-700 p-4 rounded-lg">
+                  <p className="font-semibold">{skill}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="experiences" className="min-h-screen flex items-center justify-center p-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Experiences</h2>
+            <div className="space-y-8">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold">Site Reliability Engineer - Ordivo Teknologi Indonesia</h3>
+                <p className="text-gray-400 mb-4">December 2023 - Present</p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Led migration to AWS, resulting in 30% cost reduction</li>
+                  <li>Implemented Kubernetes, improving deployment efficiency by 50%</li>
+                  <li>Designed CI/CD pipelines, reducing deployment time by 70%</li>
+                </ul>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold">Med. DevOps Engineer - Livecom B.V</h3>
+                <p className="text-gray-400 mb-4">June 2021 - March 2023</p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Automated infrastructure provisioning with Terraform</li>
+                  <li>Implemented monitoring using Prometheus and Grafana</li>
+                  <li>Optimized application performance and scalability</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contributions" className="min-h-screen flex items-center justify-center p-4 bg-gray-800">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Community Contributions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-4">Open Source</h3>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Initiave and contribute developing Unofficial Helm Chart for Documenso</li>
+                  <li>Participated in Google Code-in 2018 to learn in contribute to Open Source Community</li>
+                  
+                </ul>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-4">Community Engagement</h3>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>First speaker at iCCom-Talk in Bandung, West Java (Indonesia Cloud Community)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="certifications" className="min-h-screen flex items-center justify-center p-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Certifications</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                "AWS Certified DevOps Engineer - Professional",
+                "Certified Kubernetes Administrator (CKA)",
+                "HashiCorp Certified: Terraform Associate",
+              ].map((cert) => (
+                <div key={cert} className="bg-gray-800 p-6 rounded-lg text-center">
+                  <p className="font-semibold">{cert}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  )
 }
+
