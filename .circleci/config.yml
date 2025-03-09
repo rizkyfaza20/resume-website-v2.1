@@ -9,6 +9,7 @@ jobs:
   build:
     docker:
     - image: cimg/node:lts
+    working_directory: ~/public
     steps:
     - checkout:
         path: ~/public
