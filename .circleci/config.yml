@@ -13,6 +13,10 @@ jobs:
     steps:
     - checkout:
         path: ~/public
+    - restore_cache:
+        keys:
+        - v1-deps"{{ checksum "package.json" }}"
+        - v1-deps-
     - run:
         name: Install Dependencies
         command: npm install
