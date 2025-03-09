@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Image from "next/image"
 import profilePic from "./assets/profile.jpg"
 import { Menu, X } from "lucide-react"
@@ -11,13 +11,13 @@ export default function FullscreenDevOpsResume() {
   const [activeSection, setActiveSection] = useState("about")
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-  const sections = [
+  const sections = useMemo(() => [
     { id: "about", title: "About", icon: "User" },
     { id: "skillset", title: "Skillset", icon: "Code" },
     { id: "experiences", title: "Experiences", icon: "Briefcase" },
     { id: "contributions", title: "Contributions", icon: "Globe" },
     { id: "certifications", title: "Certifications", icon: "Award" },
-  ]
+  ], [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -118,6 +118,7 @@ export default function FullscreenDevOpsResume() {
                 "Azure DevOps / Github Actions",
                 "Powershell / Bash scripting",
                 "Prometheus / Grafana",
+                "Vault / Azure Key Vault / Google KMS",
                 "ELK Stack",
                 "Git",
                 "Agile / Scrum",
@@ -137,10 +138,21 @@ export default function FullscreenDevOpsResume() {
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Site Reliability Engineer - Ordivo Teknologi Indonesia</h3>
                 <p className="text-gray-400 mb-4">December 2023 - Present</p>
+                <p className="text-sm text-gray-400 mb-4">Bandung, Indonesia - Onsite</p>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Led migration to AWS, resulting in 30% cost reduction</li>
+                  <li>Optimized cloud infrastructure, resulting in 1 cost reduction</li>
                   <li>Implemented Kubernetes, improving deployment efficiency by 50%</li>
                   <li>Designed CI/CD pipelines, reducing deployment time by 70%</li>
+                </ul>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold">DevOps Analyst - Cargo Community Network Pte. Ltd.</h3>
+                <p className="text-gray-400 mb-4">June 2021 - March 2023</p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Initiave research to optimize Azure DevOps Server REST API, improving DevOps workflows.</li>
+                  <li>Enhanced Nagios XI monitoring system for improved operational visibility</li>
+                  <li>Implemented automated WAF rules in Azure using Terraform for security compliance</li>
+                  <li>Established and documented DevOps governance standards</li>
                 </ul>
               </div>
               <div className="bg-gray-800 p-6 rounded-lg">

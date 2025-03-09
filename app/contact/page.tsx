@@ -55,7 +55,7 @@ export default function ContactPage(): JSX.Element {
           <h2 className="text-2xl font-semibold mb-4">Get in Touch</h2>
           <p className="mb-4">Feel free to reach out for collaborations or just a friendly hello</p>
           <a href="mailto:john.doe@example.com" className="text-blue-400 hover:text-blue-300">
-            Here's my email
+            Here&apos;s my email
           </a>
         </div>
       </div>
