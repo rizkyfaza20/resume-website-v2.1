@@ -1,29 +1,28 @@
 version: 2.1
-orbs: 
+orbs:
   node: circleci/node@5.1.1
 general:
   branches:
-    only: 
-     - develop
+    only:
+    - develop
 jobs:
-    build:
-        docker:
-            - image: cimg/node:lts
-        working_directory: ~/public/public
-        steps:
-          - checkout:
-               path: ~/public
-          - run: 
-                name: Install Dependencies
-                command: npm install
-          - save_cache:
-              paths:
-                - ./node_modules
-              key: v1-deps-{{ checksum "package-lock.json" }}
-          - run: 
-                name: Build
-                command: npm run build
-          - run:
-                name: Deploy to Firebase
-                command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_DEPLOY_TOKEN" --only hosting
-         
+  build:
+    docker:
+    - image: cimg/node:lts
+    working_directory: ~/public/public
+    steps:
+    - checkout:
+        path: ~/public
+    - run:
+        name: Install Dependencies
+        command: npm install
+    - save_cache:
+        paths:
+        - ./node_modules
+        key: v1-deps-{{ checksum "package-lock.json" }}
+    - run:
+        name: Build
+        command: npm run build
+    - run:
+        name: Deploy to Firebase
+        command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_DEPLOY_TOKEN" --only hosting
