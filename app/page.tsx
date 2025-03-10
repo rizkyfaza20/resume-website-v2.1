@@ -169,7 +169,7 @@ export default function FullscreenDevOpsResume() {
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Med. DevOps Engineer - Livecom B.V</h3>
                 <p className="text-gray-400 mb-4">July 2022 - March 2023</p>
-                <p className="text-sm text-gray-400 mb-4">Netherland - Fulltime(Remote from Indonesia)</p>
+                <p className="text-sm text-gray-400 mb-4">Netherland - Fulltime (Remote from Indonesia)</p>
                 <ul className="list-disc list-inside space-y-2">
                   <li>Automated deployments & monitoring using Terraform, Bash scripts, and Grafana + Prometheus, cutting manual effort by 2 hours per week and improving system insights by 5%.</li>
                   <li>Enhanced search & authentication by managing Elasticsearch clusters for Java applications (reducing index search time by 5-15 minutes) and integrating Keycloak for secure authentication.</li>
@@ -179,7 +179,7 @@ export default function FullscreenDevOpsResume() {
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Jr. DevOps Engineer - D-Shore B.V</h3>
                 <p className="text-gray-400 mb-4">June 2021 - September 2022</p>
-                <p className="text-sm text-gray-400 mb-4">Netherland - Fulltime(Remote from Indonesia)</p>
+                <p className="text-sm text-gray-400 mb-4">Netherland - Fulltime (Remote from Indonesia)</p>
                 <ul className="list-disc list-inside space-y-2">
                   <li>Built and managed end-to-end CI/CD pipelines using Azure DevOps, supporting a diverse range of applications.</li>
                   <li>Developed Infrastructure-as-Code solutions using Bicep and ARM Templates, automating cloud deployments in Azure.</li>
