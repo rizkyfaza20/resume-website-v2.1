@@ -216,9 +216,9 @@ export default function FullscreenDevOpsResume() {
             <h2 className="text-3xl font-bold mb-8 text-center">Certifications</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                "AWS Certified DevOps Engineer - Professional",
-                "Certified Kubernetes Administrator (CKA)",
-                "HashiCorp Certified: Terraform Associate",
+                "AWS Cloud Developing - AWS Academy",
+                "AWS Cloud Quest - Cloud Practicioner",
+                "Cisco CyberOps Associate"
               ].map((cert) => (
                 <div key={cert} className="bg-gray-800 p-6 rounded-lg text-center">
                   <p className="font-semibold">{cert}</p>
