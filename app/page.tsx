@@ -111,15 +111,23 @@ export default function FullscreenDevOpsResume() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
               {[
                 "AWS / Azure / GCP",
-                "Docker / Kubernetes",
+                "Docker / Kubernetes / Podman",
                 "Terraform / Pulumi",
                 "Ansible / Azure Bicep",
                 "EKS / GKE / RKE",
+                "ArgoCD",
+                "Helm",
                 "Azure DevOps / Github Actions",
+                "Drone CI",
+                "SQL / NoSQL Databases",
                 "Powershell / Bash scripting",
                 "Prometheus / Grafana",
                 "Vault / Azure Key Vault / Google KMS",
-                "ELK Stack",
+                "ELK Stack / Sentry",
+                "SonarQube",
+                "Crowdsec",
+                "Oauth2 Proxy / Keycloak",
+                "Cloudflare",
                 "Git",
                 "Agile / Scrum",
               ].map((skill) => (
@@ -138,16 +146,19 @@ export default function FullscreenDevOpsResume() {
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Site Reliability Engineer - Ordivo Teknologi Indonesia</h3>
                 <p className="text-gray-400 mb-4">December 2023 - Present</p>
-                <p className="text-sm text-gray-400 mb-4">Bandung, Indonesia - Onsite</p>
+                <p className="text-sm text-gray-400 mb-4">Bandung, Indonesia - Fulltime Contract</p>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Optimized cloud infrastructure, resulting in 1 cost reduction</li>
-                  <li>Implemented Kubernetes, improving deployment efficiency by 50%</li>
-                  <li>Designed CI/CD pipelines, reducing deployment time by 70%</li>
+                  <li>Optimized Kubernetes clusters by improving networking (ingress/egress) and resource utilization, reducing cloud costs by <b>16% and increasing performance by 10%.</b></li>
+                  <li>Automated infrastructure provisioning with Terraform, managing AWS services (ECS, ALB, CodePipeline) and migrating DNS from Route53 to Cloudflare based on cost-performance analysis.</li>
+                  <li>Enhanced deployment efficiency by restructuring Helm charts and implementing ArgoCD for GitOps-driven Kubernetes service management.</li>
+                  <li>Improved monitoring & incident response by integrating Grafana & Prometheus for real-time observability and creating response guidelines for faster outage resolution.</li>
+                  <li>Initiate and Involved in performing research for independent infrastructure development to reduce costs for whole projects in <b>3 months</b></li>
                 </ul>
               </div>
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">DevOps Analyst - Cargo Community Network Pte. Ltd.</h3>
-                <p className="text-gray-400 mb-4">June 2021 - March 2023</p>
+                <p className="text-gray-400 mb-4">May 2023 - August 2023</p>
+                <p className="text-sm text-gray-400 mb-4">Singapore - Freelance</p>
                 <ul className="list-disc list-inside space-y-2">
                   <li>Initiave research to optimize Azure DevOps Server REST API, improving DevOps workflows.</li>
                   <li>Enhanced Nagios XI monitoring system for improved operational visibility</li>
@@ -157,11 +168,22 @@ export default function FullscreenDevOpsResume() {
               </div>
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Med. DevOps Engineer - Livecom B.V</h3>
-                <p className="text-gray-400 mb-4">June 2021 - March 2023</p>
+                <p className="text-gray-400 mb-4">July 2022 - March 2023</p>
+                <p className="text-sm text-gray-400 mb-4">Netherland - Fulltime(Remote from Indonesia)</p>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Automated infrastructure provisioning with Terraform</li>
-                  <li>Implemented monitoring using Prometheus and Grafana</li>
-                  <li>Optimized application performance and scalability</li>
+                  <li>Automated deployments & monitoring using Terraform, Bash scripts, and Grafana + Prometheus, cutting manual effort by 2 hours per week and improving system insights by 5%.</li>
+                  <li>Enhanced search & authentication by managing Elasticsearch clusters for Java applications (reducing index search time by 5-15 minutes) and integrating Keycloak for secure authentication.</li>
+                  <li>Improved CI/CD & system efficiency by resolving pipeline issues in React.js, .NET, and Java projects and orchestrating Docker-based log management.</li>
+                </ul>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold">Jr. DevOps Engineer - D-Shore B.V</h3>
+                <p className="text-gray-400 mb-4">June 2021 - September 2022</p>
+                <p className="text-sm text-gray-400 mb-4">Netherland - Fulltime(Remote from Indonesia)</p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Built and managed end-to-end CI/CD pipelines using Azure DevOps, supporting a diverse range of applications.</li>
+                  <li>Developed Infrastructure-as-Code solutions using Bicep and ARM Templates, automating cloud deployments in Azure.</li>
+                  <li>Implemented third-party tools for code scanning and version control, improving code quality and reducing deployment errors.</li>
                 </ul>
               </div>
             </div>
@@ -175,9 +197,8 @@ export default function FullscreenDevOpsResume() {
               <div className="bg-gray-700 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold mb-4">Open Source</h3>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Initiave and contribute developing Unofficial Helm Chart for Documenso</li>
-                  <li>Participated in Google Code-in 2018 to learn in contribute to Open Source Community</li>
-                  
+                  <li>Helm Chart Contributor – Documenso (Community Contribution) (2024 - Present)</li>
+                  <li>Participated in Google Code-in 2018 to learn in contribute to Open Source Community (2018)</li>
                 </ul>
               </div>
               <div className="bg-gray-700 p-6 rounded-lg">
