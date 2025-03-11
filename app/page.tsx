@@ -16,7 +16,7 @@ export default function FullscreenDevOpsResume() {
     { id: "skillset", title: "Skillset", icon: "Code" },
     { id: "experiences", title: "Experiences", icon: "Briefcase" },
     { id: "contributions", title: "Contributions", icon: "Globe" },
-    { id: "certifications", title: "Certifications", icon: "Award" },
+    { id: "training-certifications", title: "Training & Certifications", icon: "Award" },
   ], [])
 
   useEffect(() => {
@@ -44,7 +44,13 @@ export default function FullscreenDevOpsResume() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const headerOffset = 64;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
       setActiveSection(sectionId)
       setIsSidebarOpen(false)
     }
@@ -59,7 +65,7 @@ export default function FullscreenDevOpsResume() {
       <nav className="fixed top-0 left-0 right-0 bg-gray-800 z-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center py-4">
-            <h1 className="text-xl font-bold">Rizky Faza - DevOps Engineer</h1>
+            <h1 className="text-xl font-bold">WedusAwan - DevOps Engineer</h1>
 
             <Button variant="ghost" size="icon" className="text-white hover:bg-gray-700 z-30" onClick={toggleSidebar}>
               {isSidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -141,8 +147,8 @@ export default function FullscreenDevOpsResume() {
 
         <section id="experiences" className="min-h-screen flex items-center justify-center p-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Experiences</h2>
-            <div className="space-y-8">
+            <h2 className="text-3xl font-bold mb-8 text-center sticky top-0 bg-gray-900 py-4">Experiences</h2>
+            <div className="space-y-6">
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Site Reliability Engineer - Ordivo Teknologi Indonesia</h3>
                 <p className="text-gray-400 mb-4">December 2023 - Present</p>
@@ -193,25 +199,37 @@ export default function FullscreenDevOpsResume() {
             <h2 className="text-3xl font-bold mb-8 text-center">Community Contributions</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-gray-700 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Open Source</h3>
-                <ul className="list-disc list-inside space-y-2">
-                  <li>Helm Chart Contributor – Documenso (Community Contribution) (2024 - Present)</li>
-                  <li>Participated in Google Code-in 2018 to learn in contribute to Open Source Community (2018)</li>
-                </ul>
+          <h3 className="text-xl font-semibold mb-4">Open Source</h3>
+          <ul className="list-disc list-inside space-y-4">
+            <li>
+              Helm Chart Contributor – Documenso (Community Contribution) (2024 - Present)
+              <br />
+              <a href="https://artifacthub.io/packages/helm/documenso/documenso" className="text-blue-500 hover:underline">View Contribution</a>
+            </li>
+            <li>
+              Participated in Google Code-in 2018 to learn and contribute to Open Source Community (2018)
+              <br />
+              <a href="https://codein.withgoogle.com/archive/" className="text-blue-500 hover:underline">View Archive</a>
+            </li>
+          </ul>
               </div>
               <div className="bg-gray-700 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Community Engagement</h3>
-                <ul className="list-disc list-inside space-y-2">
-                  <li>First speaker at iCCom-Talk in Bandung, West Java (Indonesia Cloud Community)</li>
-                </ul>
+          <h3 className="text-xl font-semibold mb-4">Community Engagement</h3>
+          <ul className="list-disc list-inside space-y-4">
+            <li>
+              First speaker at iCCom-MeetHub in Bandung, West Java (Indonesia Cloud Community)
+              <br />
+              <a href="https://bit.ly/iccom-bdg" className="text-blue-500 hover:underline">View Event</a>
+            </li>
+          </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="certifications" className="min-h-screen flex items-center justify-center p-4">
+        <section id="training-certifications" className="min-h-screen flex items-center justify-center p-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Certifications</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center">Training & Certifications</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 "AWS Cloud Developing - AWS Academy",
