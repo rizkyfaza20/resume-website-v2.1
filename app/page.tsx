@@ -146,44 +146,42 @@ export default function FullscreenDevOpsResume() {
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Site Reliability Engineer - Ordivo Teknologi Indonesia</h3>
                 <p className="text-gray-400 mb-4">December 2023 - Present</p>
-                <p className="text-sm text-gray-400 mb-4">Bandung, Indonesia - Fulltime Contract</p>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Optimized Kubernetes clusters by improving networking (ingress/egress) and resource utilization, reducing cloud costs by <b>16% and increasing performance by 10%.</b></li>
-                  <li>Automated infrastructure provisioning with Terraform, managing AWS services (ECS, ALB, CodePipeline) and migrating DNS from Route53 to Cloudflare based on cost-performance analysis.</li>
-                  <li>Enhanced deployment efficiency by restructuring Helm charts and implementing ArgoCD for GitOps-driven Kubernetes service management.</li>
-                  <li>Improved monitoring & incident response by integrating Grafana & Prometheus for real-time observability and creating response guidelines for faster outage resolution.</li>
-                  <li>Initiate and Involved in performing research for independent infrastructure development to reduce costs for whole projects in <b>3 months</b></li>
+                  <li><b>Optimized Kubernetes</b>, reducing cloud costs by <b>16%</b> and improving performance by <b>10%</b>.</li>
+                  <li><b>Automated infrastructure</b> using Terraform, managing AWS services and migrating DNS.</li>
+                  <li><b>Enhanced deployments</b> with Helm charts and ArgoCD for GitOps.</li>
+                  <li><b>Improved monitoring</b> with Grafana & Prometheus, creating faster incident responses.</li>
+                  <li><b>Led infrastructure research</b>, reducing project costs in <b>3 months</b>.</li>
                 </ul>
               </div>
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">DevOps Analyst - Cargo Community Network Pte. Ltd.</h3>
                 <p className="text-gray-400 mb-4">May 2023 - August 2023</p>
-                <p className="text-sm text-gray-400 mb-4">Singapore - Freelance</p>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Initiave research to optimize Azure DevOps Server REST API, improving DevOps workflows.</li>
-                  <li>Enhanced Nagios XI monitoring system for improved operational visibility</li>
-                  <li>Implemented automated WAF rules in Azure using Terraform for security compliance</li>
-                  <li>Established and documented DevOps governance standards</li>
+                  <li><b>Optimized DevOps workflows</b> using Azure DevOps Server REST API.</li>
+                  <li><b>Enhanced monitoring</b> with Nagios XI for better operational visibility.</li>
+                  <li><b>Automated WAF security</b> using Terraform.</li>
+                  <li><b>Established DevOps governance</b> standards.</li>
                 </ul>
               </div>
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Med. DevOps Engineer - Livecom B.V</h3>
                 <p className="text-gray-400 mb-4">July 2022 - March 2023</p>
-                <p className="text-sm text-gray-400 mb-4">Netherland - Fulltime (Remote from Indonesia)</p>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Automated deployments & monitoring using Terraform, Bash scripts, and Grafana + Prometheus, cutting manual effort by 2 hours per week and improving system insights by 5%.</li>
-                  <li>Enhanced search & authentication by managing Elasticsearch clusters for Java applications (reducing index search time by 5-15 minutes) and integrating Keycloak for secure authentication.</li>
-                  <li>Improved CI/CD & system efficiency by resolving pipeline issues in React.js, .NET, and Java projects and orchestrating Docker-based log management.</li>
+                  <li><b>Improved server monitoring</b> using Grafana + Prometheus, optimizing performance by <b>5%</b>.</li>
+                  <li><b>Automated log management & Docker orchestration</b> with Bash scripts, saving <b>2 hours/week</b>.</li>
+                  <li><b>Managed Elasticsearch clusters</b> via Docker Compose, improving Java search performance and reducing index search time by <b>5-15 minutes</b>.</li>
+                  <li><b>Resolved CI/CD pipeline issues</b> in React.js, .NET, and Java projects, enhancing deployment efficiency.</li>
+                  <li><b>Implemented Keycloak authentication</b> for web applications, increasing security in the First Project.</li>
                 </ul>
               </div>
               <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Jr. DevOps Engineer - D-Shore B.V</h3>
                 <p className="text-gray-400 mb-4">June 2021 - September 2022</p>
-                <p className="text-sm text-gray-400 mb-4">Netherland - Fulltime (Remote from Indonesia)</p>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Built and managed end-to-end CI/CD pipelines using Azure DevOps, supporting a diverse range of applications.</li>
-                  <li>Developed Infrastructure-as-Code solutions using Bicep and ARM Templates, automating cloud deployments in Azure.</li>
-                  <li>Implemented third-party tools for code scanning and version control, improving code quality and reducing deployment errors.</li>
+                  <li><b>Built CI/CD pipelines</b> with Azure DevOps.</li>
+                  <li><b>Automated cloud deployments</b> with Bicep & ARM Templates.</li>
+                  <li><b>Improved code quality</b> by integrating third-party scanning tools.</li>
                 </ul>
               </div>
             </div>
