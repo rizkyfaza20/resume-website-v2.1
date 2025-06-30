@@ -150,14 +150,24 @@ export default function FullscreenDevOpsResume() {
             <h2 className="text-3xl font-bold mb-8 text-center sticky top-0 bg-gray-900 py-4">Experiences</h2>
             <div className="space-y-6">
               <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold">L2 DevOps Engineer - Sensoneo j.s.a</h3>
+                <p className="text-gray-400 mb-4">June 2025 - Present</p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Improved monitoring and escalation flow, <b>contributing to 10% less downtime and faster incident response.</b></li>
+                  <li>Handled client authentication and registration issues to support smoother user onboarding.</li>
+                  <li>Introduced CI validation for Terraform to minimize misconfigurations and increase deployment reliability.</li>
+                  <li>Refactored Terraform structure by separating environments, simplifying updates and improving reusability.</li>
+                </ul>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold">Site Reliability Engineer - Ordivo Teknologi Indonesia</h3>
-                <p className="text-gray-400 mb-4">December 2023 - Present</p>
+                <p className="text-gray-400 mb-4">December 2023 - June 2025</p>
                 <ul className="list-disc list-inside space-y-2">
                   <li><b>Optimized Kubernetes</b>, reducing cloud costs by <b>16%</b> and improving performance by <b>10%</b>.</li>
                   <li><b>Automated infrastructure</b> using Terraform, managing AWS services and migrating DNS.</li>
                   <li><b>Enhanced deployments</b> with Helm charts and ArgoCD for GitOps.</li>
-                  <li><b>Improved monitoring</b> with Grafana & Prometheus, creating faster incident responses.</li>
-                  <li><b>Led infrastructure research</b>, reducing project costs in <b>3 months</b>.</li>
+                  <li><b>Improved monitoring</b> creating faster incident responses.</li>
+                  <li><b>Led infrastructure research by looking from region aspect</b>, reducing project costs in <b>3 months</b>.</li>
                 </ul>
               </div>
               <div className="bg-gray-800 p-6 rounded-lg">
