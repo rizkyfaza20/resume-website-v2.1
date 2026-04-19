@@ -16,6 +16,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Rizky Faza - DevOps Engineer",
   description: "Rizky Faza's DevOps Engineer resume",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
