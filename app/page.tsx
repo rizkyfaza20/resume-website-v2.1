@@ -6,22 +6,19 @@ import profilePic from "./assets/profile.jpg";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sidebar } from "@/components/sidebar";
+import { sectionTitles, content, type Lang } from "@/lib/translations";
 
 export default function FullscreenDevOpsResume() {
   const [activeSection, setActiveSection] = useState("about");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [lang, setLang] = useState<Lang>("en");
 
   const sections = useMemo(
-    () => [
-      { id: "about", title: "About", icon: "User" },
-      { id: "skillset", title: "Skillset", icon: "Code" },
-      { id: "experiences", title: "Experiences", icon: "Briefcase" },
-      { id: "contributions", title: "Contributions", icon: "Globe" },
-      { id: "blogs", title: "Blogs", icon: "BookOpen" },
-      { id: "training-certifications", title: "Certifications", icon: "Award" },
-    ],
-    [],
+    () => sectionTitles[lang],
+    [lang],
   );
+
+  const t = content[lang];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,6 +84,24 @@ export default function FullscreenDevOpsResume() {
         {/* Vertical Divider */}
         <div className="hidden md:block w-px h-4 bg-zinc-800 mx-2" />
 
+        {/* Language Toggle */}
+        <div className="flex items-center gap-1">
+          {(["en", "id"] as Lang[]).map((code) => (
+            <button
+              key={code}
+              onClick={() => setLang(code)}
+              aria-pressed={lang === code}
+              className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded transition-all duration-300 ${
+                lang === code
+                  ? "text-black bg-zinc-100"
+                  : "text-zinc-500 hover:text-zinc-100 bg-zinc-900/30"
+              }`}
+            >
+              {code === "en" ? "EN" : "ID"}
+            </button>
+          ))}
+        </div>
+
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-6">
           {sections.map((section) => (
@@ -141,33 +156,15 @@ export default function FullscreenDevOpsResume() {
             </div>
             <div className="flex-1">
               <h2 className="text-zinc-500 text-xs font-bold uppercase tracking-[0.2em] mb-4">
-                / about
+                {t.about.heading}
               </h2>
               <h2 className="text-4xl font-bold text-zinc-100 mb-6 tracking-tight uppercase">
-                Rizky Faza
+                {t.about.name}
               </h2>
               <div className="text-lg leading-relaxed mb-8 max-w-2xl text-zinc-300 font-medium space-y-4">
-                <p>
-                  DevOps and Site Reliability Engineer with approximately three
-                  years of hands-on experience across{" "}
-                  <span className="text-zinc-100 underline decoration-zinc-800 underline-offset-4">
-                    Azure, AWS, and GCP
-                  </span>
-                  .
-                </p>
-                <p>
-                  Focusing on{" "}
-                  <span className="text-zinc-100 underline decoration-zinc-800 underline-offset-4">
-                    automation, scalability, and reliability
-                  </span>
-                  . Highly adaptable, currently operating in an Azure-centric
-                  environment while maintaining cross-cloud competency.
-                </p>
-                <p className="text-sm text-zinc-500 italic">
-                  Currently expanding capabilities toward system design and
-                  backend engineering following a structured T-shaped learning
-                  approach.
-                </p>
+                <p>{t.about.p1}</p>
+                <p>{t.about.p2}</p>
+                <p className="text-sm text-zinc-500 italic">{t.about.p3}</p>
               </div>
             </div>
           </div>
@@ -175,26 +172,10 @@ export default function FullscreenDevOpsResume() {
 
         <section id="skillset" className="py-24 border-b border-zinc-900">
           <h2 className="text-zinc-500 text-xs font-bold uppercase tracking-[0.2em] mb-12">
-            / skillset
+            {t.skillset.heading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8">
-            {[
-              "Azure / AWS / GCP",
-              "Kubernetes / Docker",
-              "Terraform",
-              "Ansible",
-              "Pulumi",
-              "ArgoCD",
-              "FluxCD",
-              "Helm Charts",
-              "Monitoring & Observability Stacks",
-              "CI/CD Governance",
-              "Cloudflare / DNS",
-              "Infrastructure Automation",
-              "System Reliability",
-              "Troubleshooting",
-              "Mentoring",
-            ].map((skill) => (
+            {t.skillset.skills.map((skill) => (
               <div
                 key={skill}
                 className="group cursor-default border-l border-zinc-900 hover:border-zinc-500 pl-4 transition-all duration-300"
@@ -209,364 +190,60 @@ export default function FullscreenDevOpsResume() {
 
         <section id="experiences" className="py-24 border-b border-zinc-900">
           <h2 className="text-zinc-500 text-xs font-bold uppercase tracking-[0.2em] mb-16">
-            / experiences
+            {t.experiences.heading}
           </h2>
           <div className="space-y-24">
-            {/* Sensoneo */}
-            <div className="group relative">
-              <div className="absolute -left-6 top-0 w-1 h-full bg-zinc-900 group-hover:bg-zinc-500 transition-colors hidden md:block" />
-              <div className="flex flex-col md:flex-row justify-between mb-4">
-                <h3 className="text-xl font-bold text-zinc-100 uppercase tracking-tight">
-                  Sensoneo j.s.a (Contract) - Remote
-                </h3>
-                <div className="flex items-center gap-2 md:mt-0 mt-2">
-                  <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest bg-zinc-900/30 px-2 py-1 rounded">
-                    May 2025 - Present
-                  </span>
-                  <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest bg-zinc-900/30 px-2 py-1 rounded">
-                    Location: Slovakia
+            {t.experiences.jobs.map((job) => (
+              <div key={job.title} className="group relative">
+                <div className="absolute -left-6 top-0 w-1 h-full bg-zinc-900 group-hover:bg-zinc-500 transition-colors hidden md:block" />
+                <div className="flex flex-col md:flex-row justify-between mb-4">
+                  <div className="flex flex-col">
+                    <h3 className="text-xl font-bold text-zinc-100 uppercase tracking-tight">
+                      {job.title}
+                    </h3>
+                    <span className="text-xs font-semibold text-zinc-400 mt-2 uppercase tracking-widest bg-zinc-900/30 px-2 py-1 rounded w-fit">
+                      {job.location}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-semibold text-zinc-500 md:mt-0 mt-2 uppercase tracking-widest bg-zinc-900/30 px-2 py-1 rounded">
+                    {job.period}
                   </span>
                 </div>
+                <p className="text-xs font-semibold text-zinc-500 mb-8 italic tracking-wide uppercase border-b border-zinc-900 inline-block pb-1">
+                  {job.role}
+                </p>
+                <ul className="space-y-4 max-w-3xl">
+                  {job.bullets.map((bullet, i) => (
+                    <li key={i} className="flex gap-4 items-start text-base leading-relaxed">
+                      <span className="text-zinc-600 mt-1">»</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="text-xs font-semibold text-zinc-500 mb-8 italic tracking-wide uppercase border-b border-zinc-900 inline-block pb-1">
-                L2 DevOps Engineer
-              </p>
-              <ul className="space-y-4 max-w-3xl">
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Optimized monitoring and incident escalation flows,{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      reducing service downtime by ~10%
-                    </b>{" "}
-                    and accelerating response.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Automated{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      FluxCD PAT rotation
-                    </b>{" "}
-                    for Azure DevOps, improving security posture and reducing
-                    overhead by ~20%.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Diagnosed and resolved{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      authentication/client registration
-                    </b>{" "}
-                    issues, stabilizing onboarding flows.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Collaborated with engineering to troubleshoot complex
-                    infrastructure,{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      reducing recurring incidents by ~15%
-                    </b>
-                    .
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Designed and implemented{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      CI-based Terraform validation
-                    </b>{" "}
-                    pipelines for error prevention.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Refactored Terraform into{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      modular, environment-separated structures
-                    </b>{" "}
-                    for better scalability.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Authored an RFC for{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      Kubernetes API Gateway adoption
-                    </b>{" "}
-                    to support platform standardization.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Provided production support and monitored{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      multi-environment deployments
-                    </b>{" "}
-                    for stable releases.
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Ordivo */}
-            <div className="group relative">
-              <div className="absolute -left-6 top-0 w-1 h-full bg-zinc-900 group-hover:bg-zinc-500 transition-colors hidden md:block" />
-              <div className="flex flex-col md:flex-row justify-between mb-4">
-                <h3 className="text-xl font-bold text-zinc-100 uppercase tracking-tight">
-                  Ordivo Teknologi Indonesia (Contract)
-                </h3>
-                <span className="text-[10px] font-semibold text-zinc-500 mt-2 uppercase tracking-widest bg-zinc-900/30 px-2 py-1 rounded">
-                  Dec 2023 - May 2025
-                </span>
-              </div>
-              <p className="text-xs font-semibold text-zinc-500 mb-8 italic tracking-wide uppercase border-b border-zinc-900 inline-block pb-1">
-                Site Reliability Engineer
-              </p>
-              <ul className="space-y-4 max-w-3xl">
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Optimized{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      Kubernetes networking
-                    </b>{" "}
-                    (ingress/egress), reducing cloud costs by ~16%.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Analyzed resource utilization to{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      resolve cluster bottlenecks
-                    </b>
-                    , improving performance by ~10%.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Led{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      DNS migration
-                    </b>{" "}
-                    from AWS Route53 to Cloudflare, optimizing cost and latency.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Developed{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      Terraform-based IaC
-                    </b>{" "}
-                    for AWS services including ECS, ALB, and CodePipeline.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Re-architected Helm charts and implemented{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      GitOps workflows
-                    </b>{" "}
-                    with ArgoCD.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Defined incident response guidelines and implemented an{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      observability stack
-                    </b>{" "}
-                    with Prometheus and Grafana.
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Cargo */}
-            <div className="group relative">
-              <div className="absolute -left-6 top-0 w-1 h-full bg-zinc-900 group-hover:bg-zinc-500 transition-colors hidden md:block" />
-              <div className="flex flex-col md:flex-row justify-between mb-4">
-                <h3 className="text-xl font-bold text-zinc-100 uppercase tracking-tight">
-                  Cargo Community Network (Remote)
-                </h3>
-                <span className="text-[10px] font-semibold text-zinc-500 mt-2 uppercase tracking-widest bg-zinc-900/30 px-2 py-1 rounded">
-                  May 2023 - Aug 2023
-                </span>
-              </div>
-              <p className="text-xs font-semibold text-zinc-500 mb-8 italic tracking-wide uppercase border-b border-zinc-900 inline-block pb-1">
-                Software Engineer – DevOps Analyst
-              </p>
-              <ul className="space-y-4 max-w-3xl">
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Optimized usage of{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      Azure DevOps Server REST API
-                    </b>{" "}
-                    to improve workflow efficiency.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Enhanced{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      Nagios XI monitoring
-                    </b>{" "}
-                    and automated Azure WAF rules using Terraform.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Authored{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      DevOps governance documentation
-                    </b>{" "}
-                    to standardize enterprise processes.
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Livecom */}
-            <div className="group relative">
-              <div className="absolute -left-6 top-0 w-1 h-full bg-zinc-900 group-hover:bg-zinc-500 transition-colors hidden md:block" />
-              <div className="flex flex-col md:flex-row justify-between mb-4">
-                <h3 className="text-xl font-bold text-zinc-100 uppercase tracking-tight">
-                  Livecom B.V (Hybrid)
-                </h3>
-                <span className="text-[10px] font-semibold text-zinc-500 mt-2 uppercase tracking-widest bg-zinc-900/30 px-2 py-1 rounded">
-                  Jul 2022 - Mar 2023
-                </span>
-              </div>
-              <p className="text-xs font-semibold text-zinc-500 mb-8 italic tracking-wide uppercase border-b border-zinc-900 inline-block pb-1">
-                DevOps Engineer
-              </p>
-              <ul className="space-y-4 max-w-3xl">
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Improved monitoring with Prometheus/Grafana, enabling{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      actionable performance insights
-                    </b>
-                    .
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Automated log management and{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      Docker orchestration
-                    </b>{" "}
-                    using Bash scripts.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Managed{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      Elasticsearch clusters
-                    </b>{" "}
-                    and integrated Keycloak authentication.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Resolved CI/CD issues across React.js, .NET, and Java
-                    applications.
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* D-Shore */}
-            <div className="group relative">
-              <div className="absolute -left-6 top-0 w-1 h-full bg-zinc-900 group-hover:bg-zinc-500 transition-colors hidden md:block" />
-              <div className="flex flex-col md:flex-row justify-between mb-4">
-                <h3 className="text-xl font-bold text-zinc-100 uppercase tracking-tight">
-                  D-Shore B.V (Hybrid)
-                </h3>
-                <span className="text-[10px] font-semibold text-zinc-500 mt-2 uppercase tracking-widest bg-zinc-900/30 px-2 py-1 rounded">
-                  Jun 2021 - Sep 2022
-                </span>
-              </div>
-              <p className="text-xs font-semibold text-zinc-500 mb-8 italic tracking-wide uppercase border-b border-zinc-900 inline-block pb-1">
-                Jr. DevOps Engineer
-              </p>
-              <ul className="space-y-4 max-w-3xl">
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Built end-to-end{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      CI/CD pipelines
-                    </b>{" "}
-                    using Azure DevOps.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Developed Azure IaC using{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      Bicep and ARM Templates
-                    </b>
-                    .
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start text-base leading-relaxed">
-                  <span className="text-zinc-600 mt-1">»</span>
-                  <span>
-                    Integrated code quality and security tools to improve{" "}
-                    <b className="text-zinc-100 underline decoration-zinc-800">
-                      deployment reliability
-                    </b>
-                    .
-                  </span>
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </section>
 
         <section id="contributions" className="py-24 border-b border-zinc-900">
           <h2 className="text-zinc-500 text-xs font-bold uppercase tracking-[0.2em] mb-16">
-            / contributions
+            {t.contributions.heading}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
               <h3 className="text-zinc-400 text-xs font-bold mb-8 uppercase tracking-widest">
-                Open Source
+                {t.contributions.openSource}
               </h3>
               <ul className="space-y-12">
                 <li className="group">
                   <p className="text-zinc-100 font-bold mb-4 uppercase tracking-tight text-base">
-                    Helm Chart Contributor – Documenso
+                    {t.contributions.helmContributor}
                   </p>
                   <a
                     href="https://artifacthub.io/packages/helm/documenso/documenso"
                     className="text-[10px] text-zinc-500 hover:text-zinc-100 flex items-center gap-2 transition-colors uppercase font-bold tracking-widest border-b border-zinc-900 inline-flex pb-1 group-hover:border-zinc-500"
                   >
-                    <span>Artifact Hub</span>
+                    <span>{t.contributions.artifactHub}</span>
                     <span className="text-xs">→</span>
                   </a>
                 </li>
@@ -574,18 +251,18 @@ export default function FullscreenDevOpsResume() {
             </div>
             <div>
               <h3 className="text-zinc-400 text-xs font-bold mb-8 uppercase tracking-widest">
-                Community
+                {t.contributions.community}
               </h3>
               <ul className="space-y-12">
                 <li className="group">
                   <p className="text-zinc-100 font-bold mb-4 uppercase tracking-tight text-base">
-                    Speaker at iCCom-MeetHub Bandung
+                    {t.contributions.speaker}
                   </p>
                   <a
                     href="https://bit.ly/iccom-bdg"
                     className="text-[10px] text-zinc-500 hover:text-zinc-100 flex items-center gap-2 transition-colors uppercase font-bold tracking-widest border-b border-zinc-900 inline-flex pb-1 group-hover:border-zinc-500"
                   >
-                    <span>View Event Details</span>
+                    <span>{t.contributions.viewEventDetails}</span>
                     <span className="text-xs">→</span>
                   </a>
                 </li>
@@ -596,7 +273,7 @@ export default function FullscreenDevOpsResume() {
 
         <section id="blogs" className="py-24 border-b border-zinc-900">
           <h2 className="text-zinc-500 text-xs font-bold uppercase tracking-[0.2em] mb-16">
-            / blogs
+            {t.blogs.heading}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <a
@@ -609,11 +286,10 @@ export default function FullscreenDevOpsResume() {
                 Medium
               </h3>
               <p className="text-sm text-zinc-500 mb-6 leading-relaxed">
-                My main blog, where I write about DevOps, SRE, and other
-                technical topics.
+                {t.blogs.mediumDesc}
               </p>
               <div className="text-[10px] text-zinc-600 group-hover:text-zinc-100 uppercase font-bold tracking-widest flex items-center gap-2 border-b border-zinc-900 inline-flex pb-1 group-hover:border-zinc-500">
-                <span>Read Articles</span>
+                <span>{t.blogs.readArticles}</span>
                 <span>→</span>
               </div>
             </a>
@@ -627,10 +303,10 @@ export default function FullscreenDevOpsResume() {
                 Hashnode
               </h3>
               <p className="text-sm text-zinc-500 mb-6 leading-relaxed">
-                I also publish the writings here, but not as often as on Medium.
+                {t.blogs.hashnodeDesc}
               </p>
               <div className="text-[10px] text-zinc-600 group-hover:text-zinc-100 uppercase font-bold tracking-widest flex items-center gap-2 border-b border-zinc-900 inline-flex pb-1 group-hover:border-zinc-500">
-                <span>Read Articles</span>
+                <span>{t.blogs.readArticles}</span>
                 <span>→</span>
               </div>
             </a>
@@ -639,14 +315,10 @@ export default function FullscreenDevOpsResume() {
 
         <section id="training-certifications" className="py-24">
           <h2 className="text-zinc-500 text-xs font-bold uppercase tracking-[0.2em] mb-12">
-            / certifications
+            {t.certifications.heading}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-            {[
-              "AWS Academy Cloud Developing",
-              "AWS Cloud Quest - Cloud Practitioner",
-              "LFS169: Introduction to GitOps",
-            ].map((cert) => (
+            {t.certifications.items.map((cert) => (
               <div
                 key={cert}
                 className="flex gap-6 items-center border-l-2 border-zinc-900 pl-6 group hover:border-zinc-500 transition-colors"
